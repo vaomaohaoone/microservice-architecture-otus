@@ -1,0 +1,8 @@
+apiVersion: v2
+name: otus-hw2
+description: Chart for second homework
+
+type: application
+
+version: 0.0.1
+appVersion: 0.0.1

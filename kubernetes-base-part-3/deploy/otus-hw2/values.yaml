@@ -1,0 +1,21 @@
+replicaCount: 2
+
+image: vaomaohao/kubernetes-base-part-3:stable
+
+resources:
+  limits:
+    cpu: "1000m"
+    memory: "1024Mi"
+  requests:
+    cpu: "500m"
+    memory: "512Mi"
+
+postgres:
+  username: otus_user
+  port: "5432"
+  database: crud_app
+  schema: otus
+  host: postgres
+
+ingress:
+  host: "arch.homework"
