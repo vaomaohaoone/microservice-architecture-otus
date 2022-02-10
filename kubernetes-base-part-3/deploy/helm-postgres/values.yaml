@@ -1,0 +1,8 @@
+fullnameOverride: postgres
+postgresqlUsername: otus_user
+postgresqlPassword: qwe123
+postgresqlDatabase: crud_app
+
+service:
+  type: NodePort
+  port: 5432
