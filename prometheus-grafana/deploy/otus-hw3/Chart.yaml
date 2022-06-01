@@ -1,0 +1,16 @@
+apiVersion: v2
+name: otus-hw3
+description: Chart for third homework
+
+type: application
+
+version: 0.0.1
+appVersion: 0.0.1
+
+dependencies:
+  - name: postgresql
+    version: 11.1.25
+    repository: https://charts.bitnami.com/bitnami
+    condition: postgresql.enabled
+    tags:
+      - myapp-database
