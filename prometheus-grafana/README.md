@@ -19,6 +19,9 @@ kubectl apply -f deploy/prometheus/prometheus-ingress.yaml -n otus-homework
 ## Install app  
 helm install otus-hw3 ./deploy/otus-hw3 --namespace=otus-homework
 
+## Run locust  
+locust --host=http://arch.homework/
+
 ## Boards  
 ![latency_with_quantilies](./static/latency_with_quantiles.png)
 ![requests_per_seconds](./static/requests_per_seconds.png)
