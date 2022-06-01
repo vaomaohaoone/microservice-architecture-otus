@@ -1,4 +1,4 @@
-#Steps  
+# Steps  
 
 ## Upgrade nginx-ingress-controller  
 helm upgrade --install ingress-nginx ingress-nginx \  
