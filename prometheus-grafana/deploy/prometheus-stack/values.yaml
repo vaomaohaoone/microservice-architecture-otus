@@ -1,0 +1,7 @@
+prometheus-node-exporter:
+  hostRootFsMount:
+    enabled: false
+prometheus:
+  prometheusSpec:
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
