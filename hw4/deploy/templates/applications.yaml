@@ -1,0 +1,110 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: otus-hw4
+  labels:
+    istio-injection: enabled
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: otus-hw4-app
+  namespace: otus-hw4
+  labels:
+    app: otus-hw4-app
+    service: otus-hw4-app
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 8080
+  selector:
+    app: otus-hw4-app
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: otus-hw4
+  name: otus-hw4-app-v1
+  labels:
+    app: otus-hw4-app
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: otus-hw4-app
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: otus-hw4-app
+        version: v1
+    spec:
+      containers:
+        - name: otus-hw4-app
+          image: vaomaohao/otus-hw4-app:stable
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /health/liveness
+              port: http
+            initialDelaySeconds: 25
+            periodSeconds: 20
+          readinessProbe:
+            httpGet:
+              path: /health/readiness
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          env:
+            - name: APP_VERSION
+              value: v1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: otus-hw4
+  name: otus-hw4-app-v2
+  labels:
+    app: otus-hw4-app
+    version: v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: otus-hw4-app
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: otus-hw4-app
+        version: v2
+    spec:
+      containers:
+        - name: otus-hw4-app
+          image: vaomaohao/otus-hw4-app:stable
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /health/liveness
+              port: http
+            initialDelaySeconds: 25
+            periodSeconds: 20
+          readinessProbe:
+            httpGet:
+              path: /health/readiness
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          env:
+            - name: APP_VERSION
+              value: v2
+---
