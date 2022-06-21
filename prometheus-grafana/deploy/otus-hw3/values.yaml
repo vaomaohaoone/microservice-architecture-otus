@@ -5,10 +5,10 @@ image: vaomaohao/prometheus-grafana-stable:stable
 resources:
   limits:
     cpu: "1000m"
-    memory: "1024Mi"
+    memory: "512Mi"
   requests:
     cpu: "500m"
-    memory: "512Mi"
+    memory: "256Mi"
 
 postgres:
   username: otus_user
