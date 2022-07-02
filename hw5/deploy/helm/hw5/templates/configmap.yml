@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: {{ .Release.Namespace }}
+data:
+  DATASOURCE_URL: {{ printf "jdbc:postgresql://%s:%s/%s?currentSchema=%s" .Values.postgres.host .Values.postgres.port .Values.postgres.database .Values.postgres.schema  | quote }}

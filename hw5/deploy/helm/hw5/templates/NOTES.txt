@@ -1,0 +1,5 @@
+1. Application URL accessed at:
+{{- if .Values.ingress.host}}
+{{ $host := .Values.ingress.host }}
+  http://{{ $host }}
+{{- end }}

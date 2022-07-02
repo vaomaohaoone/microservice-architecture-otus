@@ -1,0 +1,16 @@
+apiVersion: v2
+name: hw5
+description: Chart for fifth homework
+
+type: application
+
+version: 0.0.1
+appVersion: 0.0.1
+
+dependencies:
+  - name: postgresql
+    version: 11.5.0
+    repository: https://charts.bitnami.com/bitnami
+    condition: postgresql.enabled
+    tags:
+      - myapp-database
