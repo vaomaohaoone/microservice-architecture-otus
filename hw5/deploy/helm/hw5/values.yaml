@@ -1,0 +1,45 @@
+replicaCount: 1
+
+image: vaomaohao/hw-5:stable
+
+resources:
+  limits:
+    cpu: "1000m"
+    memory: "512Mi"
+  requests:
+    cpu: "500m"
+    memory: "256Mi"
+
+postgres:
+  username: otus_user
+  port: "5432"
+  database: crud_app
+  schema: otus
+  host: postgres
+
+ingress:
+  host: "arch.homework"
+
+metrics:
+  serviceMonitor:
+    enabled: false
+
+## Custom values for postgresql chart
+postgresql:
+
+  primary:
+    persistence:
+      enabled: false
+
+  auth:
+    username: otus_user
+    password: qwe123
+    database: crud_app
+  fullnameOverride: postgres
+
+  service:
+    type: NodePort
+    port: 5432
+
+  metrics:
+    enabled: false
