@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: arch-homework-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  rules:
+    - host: "arch.homework"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/(.*)"
+            backend:
+              service:
+                name: idempotency-service
+                port:
+                  number: 8000
