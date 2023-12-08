@@ -1,0 +1,255 @@
+{
+	"info": {
+		"_postman_id": "d384f1b9-3777-4bc0-a25f-dbb3c68583e4",
+		"name": "idempotency",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5955214"
+	},
+	"item": [
+		{
+			"name": "get all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://arch.homework/orders",
+					"protocol": "http",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userName\": \"user1\",\n    \"sumOrder\": 999.52\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://arch.homework/order",
+					"protocol": "http",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"path": [
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get order",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://arch.homework/order/1",
+					"protocol": "http",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"path": [
+						"order",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update order successfully",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"version\": 0,\n    \"userName\": \"user1\",\n    \"sumOrder\": 1000.00\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://arch.homework/order",
+					"protocol": "http",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"path": [
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update order with wrong version",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"version\": 0,\n    \"userName\": \"user1\",\n    \"sumOrder\": 1200.00\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://arch.homework/order",
+					"protocol": "http",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"path": [
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "charge sum",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "If-Match",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"orderId\": 1,\n    \"sum\": 500.00\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://arch.homework/order/charge",
+					"protocol": "http",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"path": [
+						"order",
+						"charge"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "charge sum with wrong version",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "If-Match",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"orderId\": 1,\n    \"sum\": 400.00\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://arch.homework/order/charge",
+					"protocol": "http",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"path": [
+						"order",
+						"charge"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete order with wrong version",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "If-Match",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://arch.homework/order/1",
+					"protocol": "http",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"path": [
+						"order",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete order",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "If-Match",
+						"value": "2",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://arch.homework/order/1",
+					"protocol": "http",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"path": [
+						"order",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -117,19 +117,6 @@ spec:
                 secretKeyRef:
                   name: order-secret
                   key: DATASOURCE_PASSWORD
-#          volumeMounts:
-#            - name: postgredb
-#              mountPath: /var/lib/postgresql/data
-#              subPath: postgres
-#  volumeClaimTemplates:
-#    - metadata:
-#        name: postgredb
-#      spec:
-#        accessModes: [ "ReadWriteOnce" ]
-#        storageClassName: standard
-#        resources:
-#          requests:
-#            storage: 0.5Gi
 ---
 apiVersion: v1
 kind: Secret
